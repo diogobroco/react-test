@@ -1,16 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;700&display=swap');
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.header-pd {
+  background-color: #282c34e8;
+  text-align: left;
+  width: 1100px;
+  height: 30px;
+  padding: 10px;
+  margin-left: 80px;
+  margin-top: 20px;
+  color: white;
+  font-size: large;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0em;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.people-search {
+  display: flex;
+  border-bottom: 1px solid #ccc;;
+  justify-content: space-between;
+  margin-left: 82px;
+  margin-right: 300px;
+  padding-top: 10px;
+  padding-bottom: 15px;
+  font-size: 18px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.people-search span {
+  margin-left: 14px;
+  font-weight: 700;
+}
+
+.search-wrapper {
+  border: 1px solid #ccc;
+  max-width: fit-content;
+  border-radius: 30px;
+  height: 30px;
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+  overflow-x: hidden;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.search-wrapper input {
+  height: 100%;
+  padding: .5rem;
+  border: none;
+  outline: none;
+  background: #cccccc9e;
 }
 
 .App-header {
@@ -24,9 +67,6 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
 
 @keyframes App-logo-spin {
   from {
