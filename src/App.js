@@ -1,17 +1,20 @@
 import './App.css';
-import { Button, TextField, Modal } from '@material-ui/core';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import CardComponent from './Components/Cards';
 import HeaderComponent from './Components/HeaderComponent';
 import SearchComponent from './Components/SearchComponent';
+import UserModal from './Components/UserModal';
 
 
 function App() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [selectedUser, setSelectedUser] = useState("");
   const [users, setUsers] = useState([]);
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    requestPersons()
+  },[])
 
   const handleOpen = () => {
     setOpen(true);
@@ -21,9 +24,9 @@ function App() {
     setOpen(false);
   };
 
-  const handleNameChange = (event) => {
+ /*  const handleNameChange = (event) => {
     setName(event.currentTarget.value)
-  }
+  } */
 
  const requestPersons = () => {
   axios.get('https://api.pipedrive.com/v1/persons', {
@@ -46,10 +49,8 @@ function App() {
       api_token: '8610b4332627a0d69688ddb3f12f1d246339361c',
     }
   }).then((response) => {
-    setEmail(response.data.data.email[0].value)
-    if (email) {
-      handleOpen()
-    }
+    setSelectedUser(response.data.data)
+    handleOpen()
   }).catch((error) => {
     console.log(error)
   }).then(() => {
@@ -61,24 +62,12 @@ function App() {
     <div className="App">
       <HeaderComponent />
       <SearchComponent />
-      <TextField value={name} onChange={handleNameChange} id="standard-basic" label="Standard" />
-      <Button onClick={requestPersons} variant="contained">Default</Button>
-        {users.map(user => (
-      <CardComponent name={user.name} key={user.id} details={ () => getPerson(user.id)} />
+      {/* <TextField value={name} onChange={handleNameChange} id="standard-basic" label="Standard" /> */}
+     {/*  <Button onClick={requestPersons} variant="contained">Default</Button> */}
+      {users.map(user => (
+      <CardComponent name={user.name} org={user.org_name} picture={user.picture_id} key={user.id} details={ () => getPerson(user.id)} />
      ))}
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description">
-
-      <div style={{
-        position: 'fixed',
-        width: 100,
-        top: 100,
-        right: 100,
-        }}> <h1>{email}</h1> </div> 
-      </Modal>
+      <UserModal open={open} handleClose={handleClose} user={selectedUser} />
     </div>
   );
 }
