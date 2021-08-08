@@ -24,10 +24,6 @@ function App() {
     setOpen(false);
   };
 
- /*  const handleNameChange = (event) => {
-    setName(event.currentTarget.value)
-  } */
-
  const requestPersons = () => {
   axios.get('https://api.pipedrive.com/v1/persons', {
     params: {
@@ -62,12 +58,12 @@ function App() {
     <div className="App">
       <HeaderComponent />
       <SearchComponent />
-      {/* <TextField value={name} onChange={handleNameChange} id="standard-basic" label="Standard" /> */}
-     {/*  <Button onClick={requestPersons} variant="contained">Default</Button> */}
-      {users.map(user => (
+     
+    {users.map(user => (
       <CardComponent name={user.name} org={user.org_name} picture={user.picture_id} key={user.id} details={ () => getPerson(user.id)} />
      ))}
-      <UserModal open={open} handleClose={handleClose} user={selectedUser} />
+      <UserModal open={open} handleClose={handleClose} user={selectedUser} org={selectedUser.org_name}
+        picture={selectedUser.picture_id} address={selectedUser.postal_address_formatted_address} details={ () => getPerson(selectedUser.id)} />
     </div>
   );
 }

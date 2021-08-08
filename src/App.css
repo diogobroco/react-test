@@ -111,3 +111,81 @@
   font-size: 13px;
   font-family: 'Open Sans', sans-serif;
 }
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 17px;
+  background: #ececec;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+.close-icon {
+  padding-right: 18px;
+  color: grey;
+}
+
+#simple-modal-title {
+  font-size: 15px;
+  padding-right: 10px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+#simple-modal-description {
+  flex-direction: column;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 9px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+#simple-modal-description img {
+  border-radius: 50%;
+}
+
+#simple-modal-description p {
+  border-bottom-style: inset;
+  margin-left: 16px;
+  margin-right: 18px;
+}
+
+.contact-table {
+  display: flex;
+  text-align: center;
+  flex-direction: row;
+  padding-bottom: 60px;
+  border-bottom: 2px solid #e3e3e305;
+}
+
+.contact-groups {
+  padding-left: 30px;
+  text-align: end;
+  font-size: 13px;
+  color: grey;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.contact-details {
+  padding-left: 34px;
+  text-align: start;
+  font-size: 13px;
+  color: rgb(0 0 0 / 20%);
+}
+
+.contact-table-footer {
+  background: #ececec;
+  text-align: end;
+  padding-right: 14px;
+  padding-top: 10px;
+  padding-bottom: 10px
+}
+
+.back-btn {
+  width: 78px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  font-weight: 600;
+  box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+}
