@@ -20,6 +20,7 @@ const App = () => {
   const [openCreateUserModal, setOpenCreateUserModal] = useState(false);
 
 /* Request the List of Person */
+
   useEffect(() => {
     requestPersons()
   },[])
@@ -58,8 +59,8 @@ const App = () => {
   }
 
   const onEnd = (result) => {
-    console.log(result)
-    setUsers(reorder(users, result.source.index, result.destination.index))
+/*     console.log(result)       To check the path
+ */    setUsers(reorder(users, result.source.index, result.destination.index))
   }
 
 /* API Requests - GET Persons */
@@ -72,8 +73,8 @@ const App = () => {
       start: pagination
     }
   }).then((response) => {
-    setUsers((previous) => [...previous, ...response.data.data])
-    setPagination((previous) => previous + 10)
+    setUsers((previous) => [...previous, ...response.data.data])  /* Bring the first 10 Persons */
+    setPagination((previous) => previous + 10)  /* Bring 10 more */
   }).catch((error) => {
     console.log(error)
   }).then(() => {
@@ -89,8 +90,8 @@ const App = () => {
       api_token: '8610b4332627a0d69688ddb3f12f1d246339361c',
     }
   }).then((response) => {
-    setSelectedUser(response.data.data)
-    handleOpenUserDetails()
+    setSelectedUser(response.data.data)  /* Brings the data of Person_id selected */
+    handleOpenUserDetails()  /* Opens the Person Modal */
   }).catch((error) => {
     console.log(error)
   }).then(() => {
@@ -118,7 +119,7 @@ const App = () => {
     <div className="App">
       <HeaderComponent />
       <SearchComponent createUser={handleOpenCreateUser}/>
-      <DragDropContext onDragEnd={onEnd}>
+      <DragDropContext onDragEnd={onEnd}>            {/* It provides and saves the new index position */}
         <Droppable droppableId="droppable">
           {(provided) => (
             <div ref={provided.innerRef} {...provided.droppableProps}>
@@ -139,8 +140,8 @@ const App = () => {
           )}
         </Droppable>
       </DragDropContext>
-      <UserModal open={openUserDetailsModal} handleClose={handleCloseUserDetails} user={selectedUser} backBtn={handleCloseBackBtn}
-        deleteUser={ () => deletePerson(selectedUser.id)}/>
+      <UserModal open={openUserDetailsModal} handleClose={handleCloseUserDetails} user={selectedUser} 
+        backBtn={handleCloseBackBtn} deleteUser={ () => deletePerson(selectedUser.id)}/>
       <CreateUserModal open={openCreateUserModal} handleClose={handleCloseCreateUser} backBtn={handleCloseBackBtn} />
       <LoadItems moreUsers={requestPersons}/>
       <FooterComponent />

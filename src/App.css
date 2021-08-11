@@ -55,6 +55,7 @@
 
 .business-icon {
   padding-top: 5px;
+  color: #797979;
 }
 
 .search-wrapper input {
@@ -108,8 +109,9 @@
 }
 
 #org-name {
-  color: #707070cb;
-  font-size: 13px;
+  color: rgb(0 0 0 / 40%);
+  font-size: 12px;
+  padding-left: 5px;
   font-family: 'Open Sans', sans-serif;
 }
 
@@ -179,6 +181,14 @@
   text-align: start;
   font-size: 13px;
   color: rgb(0 0 0 / 20%);
+}
+
+.business-details {
+  display: flex;
+  align-content: center;
+  flex-direction: row;
+  padding-top: 15px;
+  color: #e3e3e3;
 }
 
 .contact-table-footer {

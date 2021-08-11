@@ -26,14 +26,14 @@ const CreateUserModal = ({open, handleClose, backBtn }) => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
-  const [org_id, setOrgId] = useState('');
+  const [orgId, setOrgId] = useState('');
   const [organizations, setOrganizations] = useState('');
   const [assistant, setAssistant] = useState('');
   const [groups, setGroups] = useState('');
   const [location, setLocation] = useState('');
 
   useEffect(() => {
-    requestOrganizations()
+    requestOrganizations()    /* Request All Orgs */
   },[])
 
   const requestOrganizations = () => {
@@ -50,6 +50,8 @@ const CreateUserModal = ({open, handleClose, backBtn }) => {
     })
    }
 
+  /* POST request */
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -57,7 +59,7 @@ const CreateUserModal = ({open, handleClose, backBtn }) => {
       name, 
       phone, 
       email, 
-      org_id,
+      orgId,
       '334f8bfe885814233f46c34393750a141410f8b8': assistant, 
       '4f87d77f9a870537b7d2619018f6d7d18fb5fab8': groups, 
       postal_address_formatted_address: location 
@@ -72,15 +74,15 @@ const CreateUserModal = ({open, handleClose, backBtn }) => {
 
   return (
     <Modal
-    open={open}
-    onClose={handleClose}
-    aria-labelledby="simple-modal-title"
-    aria-describedby="simple-modal-description">
-    <div className={classes.paper}>
-      <div className="modal-header">
-        <h2 id="simple-modal-title">Create Person</h2>
-        <CloseIcon fontSize="small" className="close-icon" onClick={backBtn} />
-      </div>
+      open={open}
+      onClose={handleClose}
+      aria-labelledby="simple-modal-title"
+      aria-describedby="simple-modal-description">
+      <div className={classes.paper}>
+        <div className="modal-header">
+          <h2 id="simple-modal-title">Create Person</h2>
+          <CloseIcon fontSize="small" className="close-icon" onClick={backBtn} />
+        </div>
 
       <div className="contact-table">
         <div className="contact-groups">
@@ -93,12 +95,15 @@ const CreateUserModal = ({open, handleClose, backBtn }) => {
           <h4>Location:</h4>
         </div>
         <div className="contact-details">
-          <form className="standard-basic" >
-            <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="input-field" autoComplete='off'/>
+          <form className="standard-basic" autoComplete='off'>
+            <input type="text" value={name} onChange={(e) => setName(e.target.value)} 
+              className="input-field" autoComplete='off'/>
           
-            <input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} className="input-field"/>
+            <input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} 
+              className="input-field" autoComplete='off'/>
           
-            <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} className="input-field"/>
+            <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} 
+              className="input-field" autoComplete='off'/>
         
             <Autocomplete
               id="combo-box-demo"
@@ -108,17 +113,20 @@ const CreateUserModal = ({open, handleClose, backBtn }) => {
               onChange={(event, newValue) => setOrgId(newValue.id)}
               renderInput={(params) => <TextField {...params} label="" autoComplete='off' />}
             />
-            <input type="text" value={assistant} onChange={(e) => setAssistant(e.target.value)} className="input-field"/>
+            <input type="text" value={assistant} onChange={(e) => setAssistant(e.target.value)} 
+              className="input-field" autoComplete='off'/>
           
-            <input type="text" value={groups} onChange={(e) => setGroups(e.target.value)} className="input-field"/>
+            <input type="text" value={groups} onChange={(e) => setGroups(e.target.value)} 
+              className="input-field" autoComplete='off'/>
           
-            <input type="text" value={location} onChange={(e) => setLocation(e.target.value)} className="input-field"/>
+            <input type="text" value={location} onChange={(e) => setLocation(e.target.value)} 
+              className="input-field" autoComplete='off'/>
           </form>
         </div>
       </div>
       <div className="contact-table-footer">
         <button type="submit" className="create-person-btn"  onClick={handleSubmit}>Create Person</button>
-        <button className="create-back-btn" onClick={backBtn} >Back</button>
+        <button className="create-back-btn" onClick={backBtn}>Back</button>
       </div>
     </div>
   </Modal>

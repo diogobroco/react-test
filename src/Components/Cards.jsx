@@ -7,8 +7,11 @@ const CardComponent = ({name, org, picture, details}) => {
     <div onClick={details}>
       <div className="main-card">
         <div className="card-details">
-          <p id="contact-name">{name}</p>
-          <p id="org-name"> <BusinessIcon className="business-icon"/> {org}</p> 
+            <p id="contact-name">{name}</p>
+          <div className="business-details">
+            <span><BusinessIcon className="business-icon"/></span>  
+            <p id="org-name">{org}</p> 
+          </div>
         </div>
         <div className="contact-picture">
           <img src={pictureUrl} alt="user" />

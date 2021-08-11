@@ -2,6 +2,7 @@ import { Modal } from "@material-ui/core"
 import { makeStyles } from '@material-ui/core/styles';
 import CloseIcon from '@material-ui/icons/Close';
 
+/* Material UI Modal styles */
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -51,8 +52,8 @@ const UserModal = ({open, handleClose, user, backBtn, deleteUser }) => {
         <div className="contact-details">
           <h4>{user.email?.length > 0 ? user.email[0].value : "No email"}</h4>
           <h4>{user.org_name}</h4>
-          <h4>{user['334f8bfe885814233f46c34393750a141410f8b8']}</h4>
-          <h4>{user['4f87d77f9a870537b7d2619018f6d7d18fb5fab8']}</h4>
+          <h4>{user['334f8bfe885814233f46c34393750a141410f8b8']}</h4>    {/* The Assistant and Groups API key */}
+          <h4>{user['4f87d77f9a870537b7d2619018f6d7d18fb5fab8']}</h4>    {/* How they appear on the data response */}
           <h4>{user.postal_address_formatted_address}</h4>
         </div>
       </div>
