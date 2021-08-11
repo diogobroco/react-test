@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const UserModal = ({open, handleClose, user, deleteUser }) => {
+const UserModal = ({open, handleClose, user, backBtn, deleteUser }) => {
   const classes = useStyles();
   const { name } = user;
   const defaultPicture = "https://www.nicepng.com/png/full/522-5226533_get-beyond-the-usual-suspects-profile-pic-icon.png";
@@ -32,13 +32,12 @@ const UserModal = ({open, handleClose, user, deleteUser }) => {
     <div className={classes.paper}>
       <div className="modal-header">
         <h2 id="simple-modal-title">Person Information</h2>
-        <CloseIcon fontSize="small" className="close-icon"/>
+        <CloseIcon fontSize="small" className="close-icon" onClick={backBtn} />
       </div>
       <div id="simple-modal-description">
         <img src={pictureUrl} alt="user" />
         <h1>{name}</h1>
-        PHONE
-        {/* <h1>{mainPhone}</h1> */}
+        <h1 id="phone-color">{user.phone? user.phone[0].value : "No phone added"}</h1>
         <p></p>
       </div>
       <div className="contact-table">
@@ -52,14 +51,14 @@ const UserModal = ({open, handleClose, user, deleteUser }) => {
         <div className="contact-details">
           <h4>{user.email?.length > 0 ? user.email[0].value : "No email"}</h4>
           <h4>{user.org_name}</h4>
-          <h4>Cpdsadsad</h4>
+          <h4>{user['334f8bfe885814233f46c34393750a141410f8b8']}</h4>
           <h4>{user['4f87d77f9a870537b7d2619018f6d7d18fb5fab8']}</h4>
           <h4>{user.postal_address_formatted_address}</h4>
         </div>
       </div>
       <div className="contact-table-footer">
-        <button onClick={deleteUser}>Delete</button>
-        <button className="back-btn">Back</button>
+        <button className="delete-btn" onClick={deleteUser}>Delete</button>
+        <button className="back-btn" onClick={backBtn} >Back</button>
       </div>
     </div>
   </Modal>

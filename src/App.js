@@ -11,8 +11,7 @@ import FooterComponent from './Components/Footer';
 import CreateUserModal from './Components/CreateUserModal';
 
 
-
-function App() {
+const App = () => {
   const [selectedUser, setSelectedUser] = useState("");
   const [pagination, setPagination] = useState(0);
   const [users, setUsers] = useState([]);
@@ -39,6 +38,12 @@ function App() {
   const handleCloseCreateUser = () => {
     setOpenCreateUserModal(false);
   };
+
+  const handleCloseBackBtn = () => {
+    setOpenUserDetailsModal(false);
+    setOpenCreateUserModal(false);
+  }
+
 
  const requestPersons = () => {
   axios.get('https://api.pipedrive.com/v1/persons', {
@@ -91,15 +96,16 @@ function App() {
       <HeaderComponent />
       <SearchComponent createUser={handleOpenCreateUser}/>
       <DragDropContext>
-        <Droppable droppableId="persons">
-          {(provided, snapshot)=> (
+        <Droppable droppableId="droppable">
+          {(provided) => (
             <div ref={provided.innerRef} {...provided.droppableProps}>
               {users.map((user, index) => (
-                <Draggable draggableId="persons-cards" key={user.id} index={index}>
-                  {(provided, snapshot) => (
+                <Draggable draggableId="{user.id}" key={user.id} index={index}>
+                  {(provided) => (
                     <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
                       <div>
-                        <CardComponent name={user.name} org={user.org_name} picture={user.picture_id} key={user.id} details={ () => getPerson(user.id)} />
+                        <CardComponent name={user.name} org={user.org_name} picture={user.picture_id} key={user.id} 
+                        details={ () => getPerson(user.id)} />
                       </div>
                     </div>
                   )}
@@ -110,8 +116,9 @@ function App() {
           )}
         </Droppable>
       </DragDropContext>
-      <UserModal open={openUserDetailsModal} handleClose={handleCloseUserDetails} user={selectedUser} deleteUser={ () => deletePerson(selectedUser.id)}/>
-      <CreateUserModal open={openCreateUserModal} handleClose={handleCloseCreateUser}/>
+      <UserModal open={openUserDetailsModal} handleClose={handleCloseUserDetails} user={selectedUser} backBtn={handleCloseBackBtn}
+        deleteUser={ () => deletePerson(selectedUser.id)}/>
+      <CreateUserModal open={openCreateUserModal} handleClose={handleCloseCreateUser} backBtn={handleCloseBackBtn} />
       <LoadItems moreUsers={requestPersons}/>
       <FooterComponent />
     </div>

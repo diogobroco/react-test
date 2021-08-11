@@ -126,6 +126,10 @@
   color: grey;
 }
 
+.close-icon:hover {
+  color: darkgray;
+}
+
 #simple-modal-title {
   font-size: 15px;
   padding-right: 10px;
@@ -143,8 +147,8 @@
 
 #simple-modal-description img {
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 90px;
+  height: 90px;
 }
 
 #simple-modal-description p {
@@ -158,7 +162,7 @@
   text-align: center;
   flex-direction: row;
   padding-bottom: 60px;
-  border-bottom: 2px solid #e3e3e305;
+  border-bottom: 1px solid darkgray;
 }
 
 .contact-groups {
@@ -178,18 +182,34 @@
 
 .contact-table-footer {
   background: #ececec;
-  text-align: end;
-  padding-right: 14px;
   padding-top: 10px;
   padding-bottom: 10px
 }
 
+#phone-color {
+  color: #0ad80a87;
+}
+
 .back-btn {
   width: 78px;
+  margin-left: 210px;
   padding-top: 4px;
   padding-bottom: 4px;
   font-weight: 600;
   box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+}
+
+.delete-btn {
+  width: 78px;
+  margin-left: 15px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  font-weight: 600;
+  box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+}
+
+.delete-btn:hover {
+  color: crimson;
 }
 
 .load-div {
@@ -235,4 +255,40 @@
 .add-person-btn:hover {
   border: 3px solid #036bb1;
   font-weight: 600;
+}
+
+.standard-basic {
+  margin-bottom: 6px;
+}
+
+.create-person-btn {
+  width: fit-content;
+  height: fit-content;
+  border-radius: 5px;
+  margin-left: 20px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  font-weight: 600;
+  box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.2);
+}
+
+.create-person-btn:hover {
+  color: #036bb1;
+  border-color: #036bb1;
+}
+
+.create-back-btn {
+  width: 78px;
+  height: fit-content;
+  margin-left: 175px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  font-weight: 600;
+  box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+}
+
+.input-field {
+  border: none;
+  margin-top: 15px;
+  border-bottom: 1.6px solid #e3e3e3;;
 }
