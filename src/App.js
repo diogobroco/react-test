@@ -12,16 +12,19 @@ import CreateUserModal from './Components/CreateUserModal';
 
 
 const App = () => {
+  /* Main States of the Contact List */
   const [selectedUser, setSelectedUser] = useState("");
   const [pagination, setPagination] = useState(0);
   const [users, setUsers] = useState([]);
   const [openUserDetailsModal, setOpenUserDetailsModal] = useState(false);
   const [openCreateUserModal, setOpenCreateUserModal] = useState(false);
 
-
+/* Request the List of Person */
   useEffect(() => {
     requestPersons()
   },[])
+
+  /* Open and Close the Modals */
 
   const handleOpenUserDetails = () => {
     setOpenUserDetailsModal(true);
@@ -44,6 +47,22 @@ const App = () => {
     setOpenCreateUserModal(false);
   }
 
+  /* React DnD functions */
+
+  const reorder = (users, startIndex, endIndex) => {
+    const result = Array.from(users);
+    const [removed] = result.splice(startIndex, 1);
+    result.splice(endIndex, 0, removed);
+
+    return result;
+  }
+
+  const onEnd = (result) => {
+    console.log(result)
+    setUsers(reorder(users, result.source.index, result.destination.index))
+  }
+
+/* API Requests - GET Persons */
 
  const requestPersons = () => {
   axios.get('https://api.pipedrive.com/v1/persons', {
@@ -62,6 +81,8 @@ const App = () => {
   })
  }
 
+ /* API Requests - GET Single Person */
+
  const getPerson = (id) => {
   axios.get(`https://api.pipedrive.com/v1/persons/${id}`, {
     params: {
@@ -76,6 +97,8 @@ const App = () => {
     console.log('request finished')
   })
  }
+
+ /* API Requests - DELETE Person */
 
  const deletePerson = (id) => {
   axios.delete(`https://api.pipedrive.com/v1/persons/${id}`, {
@@ -95,12 +118,12 @@ const App = () => {
     <div className="App">
       <HeaderComponent />
       <SearchComponent createUser={handleOpenCreateUser}/>
-      <DragDropContext>
+      <DragDropContext onDragEnd={onEnd}>
         <Droppable droppableId="droppable">
           {(provided) => (
             <div ref={provided.innerRef} {...provided.droppableProps}>
               {users.map((user, index) => (
-                <Draggable draggableId="{user.id}" key={user.id} index={index}>
+                <Draggable draggableId={`${user.id}`} key={user.id} index={index}>
                   {(provided) => (
                     <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
                       <div>
