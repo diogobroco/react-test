@@ -68,7 +68,7 @@ const App = () => {
  const requestPersons = () => {
   axios.get('https://api.pipedrive.com/v1/persons', {
     params: {
-      api_token: '8610b4332627a0d69688ddb3f12f1d246339361c',
+      api_token: "X",
       limit: 10,
       start: pagination
     }
@@ -87,7 +87,7 @@ const App = () => {
  const getPerson = (id) => {
   axios.get(`https://api.pipedrive.com/v1/persons/${id}`, {
     params: {
-      api_token: '8610b4332627a0d69688ddb3f12f1d246339361c',
+      api_token: 'X',
     }
   }).then((response) => {
     setSelectedUser(response.data.data)  /* Brings the data of Person_id selected */
@@ -104,7 +104,7 @@ const App = () => {
  const deletePerson = (id) => {
   axios.delete(`https://api.pipedrive.com/v1/persons/${id}`, {
     params: {
-      api_token: '8610b4332627a0d69688ddb3f12f1d246339361c',
+      api_token: 'X',
     }
   }).then((response) => {
     requestPersons()
